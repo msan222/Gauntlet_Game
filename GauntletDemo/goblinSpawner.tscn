@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/extracted/goblin_spawner.png" type="Texture2D" id=2]
+[ext_resource path="res://GoblinSpawnerStaticBOdy.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+size = Vector2( 6.69786, 6.31539 )
+
+[node name="StaticBody2D" type="StaticBody2D" groups=[
+"Hitable",
+]]
+collision_layer = 16
+collision_mask = 31
+script = ExtResource( 3 )
+SPAWNING = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

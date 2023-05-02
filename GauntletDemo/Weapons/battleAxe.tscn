@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Weapons/battleAxe.gd" type="Script" id=1]
+[ext_resource path="res://assets/extracted/weapon_battleAxe.png" type="Texture2D" id=2]
+
+[node name="battleAxe" type="RigidBody2D" groups=[
+"Weapon",
+]]
+collision_layer = 8
+script = ExtResource( 1 )
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array( -2, -9, -2, 12, 2, 12, 2, -9 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array( -6, -11, -5, -11, -2, -9, 2, -9, 5, -11, 6, -11, 6, 2, 5, 2, 2, -1, 2, 12, -2, 12, -2, -1, -5, 2, -6, 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.35
+autostart = true
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
